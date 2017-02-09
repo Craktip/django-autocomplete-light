@@ -3,6 +3,9 @@
     $(document).on('autocompleteLightInitialize', '[data-autocomplete-light-function=select2]', function() {
         var element = $(this);
 
+        // This widget has a clear button
+        $(this).find('option[value=""]').remove();
+
         // Templating helper
         function template(item) {
             if (element.attr('data-html')) {
@@ -48,6 +51,7 @@
             tokenSeparators: element.attr('data-tags') ? [','] : null,
             debug: true,
             placeholder: '',
+            language: element.attr('data-autocomplete-light-language'),
             minimumInputLength: 0,
             allowClear: ! $(this).is('required'),
             templateResult: template,
